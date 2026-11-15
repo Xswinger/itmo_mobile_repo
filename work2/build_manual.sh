@@ -6,8 +6,6 @@ PROJECT_DIR="${0:A:h}"
 BUILD_DIR="$PROJECT_DIR/.manual-build"
 CONFIGURATION="${CONFIGURATION:-debug}"
 
-# Используем согласованные compiler + SDK из Xcode, если он установлен.
-# Явно заданный DEVELOPER_DIR имеет приоритет.
 if [[ -z "${DEVELOPER_DIR:-}" && -d /Applications/Xcode.app/Contents/Developer ]]; then
     export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
 fi
@@ -26,7 +24,6 @@ case "$CONFIGURATION" in
 esac
 
 mkdir -p "$BUILD_DIR/module-cache" "$BUILD_DIR/tmp"
-# Все временные файлы сборки остаются внутри проекта.
 export TMPDIR="$BUILD_DIR/tmp/"
 
 COMMON_FLAGS=(
@@ -35,6 +32,7 @@ COMMON_FLAGS=(
     -module-cache-path "$BUILD_DIR/module-cache"
 )
 
+# Этап 1: executable, который импортирует и линкует SwiftBasicsLab
 xcrun swiftc \
     "$PROJECT_DIR/main.swift" \
     -o "$BUILD_DIR/SwiftBasicsLab" \

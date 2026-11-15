@@ -165,7 +165,6 @@ swift --version
 ```bash
 swift build
 swift run DecimalLab
-swift test
 ```
 
 Release-сборка и путь к готовым бинарникам:

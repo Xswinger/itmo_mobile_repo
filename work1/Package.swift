@@ -16,10 +16,6 @@ let package = Package(
         .executableTarget(
             name: "DecimalLab",
             dependencies: ["DecimalKit"]
-        ),
-        .testTarget(
-            name: "DecimalKitTests",
-            dependencies: ["DecimalKit"]
         )
     ]
 )
